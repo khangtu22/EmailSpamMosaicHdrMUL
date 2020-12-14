@@ -1,5 +1,5 @@
-# email-spam-classifier
-This project's purpose is to classify email is spam or ham. We implemented on PyCharm. 
+# email-spam-mosaic-hdr
+This project's purpose is to classify email is spam or ham, process mosaic image and create hdr image. We implemented on PyCharm. 
 ## Steps
 * Make a virtual environment using:
 ```
