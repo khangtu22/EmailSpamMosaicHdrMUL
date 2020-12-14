@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="jumbotron mt-5 vertical-center" style="border-radius: 10px">
+    <div class="container" >
+        <form method="post">
+            <p class="h4 mb-4">Login</p>
+                {% csrf_token %}
+                {{form|crispy }}
+            <p>Don't have an account? <a href="{% url 'signup' %}"> Sign up </a> </p>
+            <button class="btn btn-success ml-2 " type="submit">Login</button>
+        </form>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron mt-5">
+        <h2 style="font-weight: bold">History</h2>
+        <ul class="list-group list-group-flush mt-5">
+            {% for email in object_list %}
+          <li class="list-group-item">
+            <p>"{{ email.content }}"</p>
+              {% if email.result == "ham" %}
+                  <p> by {{ email.author }} |<span class="text-success"> {{ email.result }} </span>| {{ email.accuracy }}% | {{ email.last_updated }}</p>
+              {% elif email.result == "spam" %}
+                  <p> by {{ email.author }} |<span class="text-danger"> {{ email.result }} </span>| {{ email.accuracy }}% | {{ email.last_updated }}</p>
+              {% else %}
+                  <p> by {{ email.author }} |<span class="text-warning"> {{ email.result }} </span>| {{ email.accuracy }}% | {{ email.last_updated }}</p>
+              {% endif %}
+              <p>
+                <a href="{% url 'email_delete' email.pk %}" class="changelink">Delete</a>
+              </p>
+          </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>HDR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/MDB/css/mdb.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/MDB/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/MDB/css/mdb.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/base.css' %}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,700&amp;display=swap">
+     <style>
+         #main{
+                min-height: calc(100vh - 56px - 53px);
+            }
+         .container{
+             font-family: 'Poppins', sans-serif;
+         }
+         #Container1{
+             margin-bottom: 100px;
+         }
+
+    </style>
+    {% block base_head %}{% endblock %}
+</head>
+    <body>
+    {% include "base/navbar.html" with base_name='SpamHam' %}
+    <div  id="main" class="container">
+    <div class="jumbotron mt-5 mb-5" style="border-radius: 10px">
+{#        <div class="container text-center mb-5">#}
+{#            <h2 style="font-weight: bold">Mosaic Project</h2>#}
+{#        </div>#}
+         <h2 style="font-weight: bold">HDR Project!</h2>
+         <p>Upload your own image. Choose your image and it will start to beautify your image</p>
+         <hr>
+         {% if not user.is_authenticated %}
+             <p>You will get your main image that created from alot of mall one.</p>
+            <p class="mb-5">Hint: <a href="{% url 'login' %}"> login </a> to get more exciting thing!</p>
+         {% elif user.is_authenticated %}
+            <p>Hint: Now you can see history checked of other.</p>
+         {% endif %}
+{#        <div class="container mt-5" id="Container1">#}
+          <div class="row">
+            <div class="col-sm-6 text-center " id="FileUpload">
+              <a href="{% url 'home_hdr' %}" class="btn text-white btn-block " style="background-color: #7952b3">Upload your Main image</a>
+            </div>
+            <div class="col-sm-6 text-center" id="FileDelete">
+              <a href="{% url 'manage_uploaded_hdr' %}" class="btn text-white btn-block" style="background-color: #7952b3">Manage Uploaded</a>
+            </div>
+          </div>
+            <br><br>
+            <div class="row mb-5">
+                <div class="col-sm-12 text-center">
+                <a href="{% url 'result_list_hdr' %}" class="btn text-white btn-block " style="background-color: #7952b3">View Results</a>
+                </div>
+            </div>
+{#        </div>#}
+         <hr>
+         <div class="container mt-5" >
+             <div class="center">
+              {% block content %}
+              {% endblock %}
+             </div>
+         </div>
+    </div>
+    </div>
+    {% include "base/footer.html" with base_name='Footer' %}
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'assets/MDB/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/mdb.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/popper.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/popper.min.js' %}"></script>
+    </body>
+
+</html>

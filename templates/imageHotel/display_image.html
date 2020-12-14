@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="jumbotron mt-5 vertical-center" style="border-radius: 10px">
+
+    <h1>Name - {{emp.name}}</h1>
+    <img src="{{emp.emp_image.url}}" alt="Smiley face" width="250" height="250">
+    <br />
+    <a href="{% url 'home' %}">Go Back!!!</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "index_hdr.html" %}
+
+{% block content %}
+    <form action="/process_hdr/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-sm">Process</button>
+        <h5 class="mb-4">All your uploaded bellow:</h5>
+         {% for myfile in filename %}
+          <input type="checkbox" class="checkbox" name="file_name" value="{{ myfile }}">
+            <label>
+            <a href="/media/{{ myfile }}" class="ml-3">
+                <img src="/media/{{ myfile }}" alt="thumbnail" class="img-thumbnail" style="width: 100px; height: auto">
+            </a><a href="/media/{{ myfile }}">{{ myfile }}</a>
+            </label>
+            <br><br>
+         {% empty %}
+            <h6 class="text-danger">Please upload your main image first!</h6>
+         {% endfor %}
+    </form>
+{% endblock %}

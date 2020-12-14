@@ -1,0 +1,33 @@
+{% extends "index_hdr.html" %}
+
+{% block content %}
+    <ul class="list-group list-group-flush">
+        {% for hdr in hdrs%}
+            <li class="list-group-item">
+            <div class="justify-content-center">
+                <img src="/media/{{ hdr.file }}" alt="thumbnail" class="img-thumbnail " style="width: 150px">
+                <a href="/media/{{ hdr.file }}" class="pl4">{{ hdr.file }} (exposure time: {{ hdr.expose_time }})</a>
+            </div>
+            <div class="d-flex justify-content-end">
+            <form method="post" action="{% url 'hdr_delete_1' hdr.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+            </div>
+            </li>
+            <br>
+            <br>
+        {% empty %}
+            <h6 class="text-danger">Please upload your image!</h6>
+        {% endfor %}
+    </ul>
+    <div class="d-flex justify-content-center mt-5">
+      <form method="post" action="/hdr/process_hdr/">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success pull-right">Process</button>
+      </form>
+    </div>
+{% endblock %}
+

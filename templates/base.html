@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Spam Detector</title>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/MDB/css/mdb.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/MDB/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/MDB/css/mdb.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/base.css' %}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,700&amp;display=swap">
+    <style>
+         #main{
+                min-height: calc(100vh - 56px - 53px);
+            }
+         .container{
+             font-family: 'Poppins', sans-serif;
+         }
+    </style>
+    {% block base_head %}{% endblock %}
+
+</head>
+<body class="body">
+{% include "base/navbar.html" with base_name='SpamHam' %}
+<div class="container" id="main">
+    {% block content %}
+    {% endblock %}
+</div>
+{% include "base/footer.html" with base_name='Footer' %}
+
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'assets/MDB/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/mdb.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/popper.js' %}"></script>
+    <script src="{% static 'assets/MDB/js/popper.min.js' %}"></script>
+
+
+
+</body>
+
+</html>

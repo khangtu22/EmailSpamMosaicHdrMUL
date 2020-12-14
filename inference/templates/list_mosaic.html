@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <ul class="list-group list-group-flush">
+        <h5 class="mb-4">Click confirm to delete:</h5>
+        {% for mosaic in mosaics %}
+            <li class="list-group-item">
+            <img src="/media/{{ mosaic.file }}" alt="thumbnail" class="img-thumbnail" style="width: 100px">
+            <a href="/media/{{ mosaic.file }}">{{ mosaic.file }}</a>
+{#                <div class="d-flex justify-content-end">#}
+{#                    <input class="btn btn-danger btn-sm " type="submit" value="Confirm">#}
+{#                </div>#}
+{#            <input type="hidden" name="pk" value="{{ mosaic.pk }}">#}
+                <div class="d-flex justify-content-end">
+                <form method="post" action="{% url 'mosaic_delete' mosaic.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+                    </div>
+            </li>
+            <br>
+            <br>
+        {% empty %}
+            <h6 class="text-danger">Please upload your image!</h6>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

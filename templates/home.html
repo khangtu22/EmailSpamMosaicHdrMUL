@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+     <div class="jumbotron mt-5" style="border-radius: 10px">
+         <h2 style="font-weight: bold">How does it work?</h2>
+         <p>Paste the content of email in to find out email is spam or not.</p>
+         <hr>
+         {% if not user.is_authenticated %}
+             <p>Your checked email will not save or we are not attempt to do anything with your email if you are a guest user. If you want to save email, you can login.</p>
+            <p>Hint: <a href="{% url 'login' %}"> login </a> to get more exciting thing!</p>
+         {% elif user.is_authenticated %}
+            <p>Hint: Now you can see history checked of other.</p>
+         {% endif %}
+        <form method="post">
+              <div class="form-group">
+                  <textarea style="resize: none; min-height: 120px;" class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" required="required" placeholder="Your email go here... "></textarea>
+              </div>
+            <br>
+            <button type="submit" onclick="scrollDown()" class="btn text-white btn-block btn-large check1" style="background-color: #7952b3"> Check Now!
+            </button>
+            {% csrf_token %}
+        </form>
+    </div>
+
+    <br><br>
+    <div id="scroll">
+        {% if result %}
+           <div class="jumbotron" id="result" style="border-radius: 10px">
+                <h2 class="font-weight-bold">Result</h2>
+                <div><br> "{{ message }}" <br><br></div>
+                {% if result == "ham" %}
+                    <p class="text-success"><strong style="font-size: larger">{{ result }}</strong> <span class="text-dark"> | </span><span class="text-warning">{{ accuracy }}% accuracy.</span> </p>
+                    <div class="progress">
+                       <div class="progress-bar success-color" role="progressbar" style="width: {{ accuracy }}%" aria-valuenow="{{ accuracy }}" aria-valuemin="0" aria-valuemax="100">{{ accuracy }}% accuracy</div>
+                    </div>
+                {% elif result == "spam"  %}
+                    <p class="text-danger"><strong style="font-size: larger">{{ result }}</strong> <span class="text-dark">|</span> <span class="text-success">{{ accuracy }}% accuracy.</span> </p>
+                    <div class="progress">
+                       <div class="progress-bar danger-color" role="progressbar" style="width: {{ accuracy }}%" aria-valuenow="{{ accuracy }}" aria-valuemin="0" aria-valuemax="100">{{ accuracy }}% accuracy</div>
+                    </div>
+                {% endif %}
+            </div>
+            <script>scrollDown();</script>
+        {% else %}
+            <p></p>
+        {% endif %}
+        <div class="text-center container" style="color:whitesmoke">
+            {% if result %}
+                <script>scrollDown();</script>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

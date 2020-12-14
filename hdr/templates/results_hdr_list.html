@@ -1,0 +1,18 @@
+{% extends "index_hdr.html" %}
+
+{% block content %}
+    <h5>Your processed images:</h5>
+    <ul class="list-group list-group-flush">
+        {% for file in filename %}
+            <li class="list-group-item">
+                <a href="/media/hdr/{{ file }}">
+                <img src="/media/hdr/{{ file }}" alt="thumbnail" class="img-thumbnail" style="width: 150px" >
+                </a>
+                <a href="/media/hdr/{{ file }}">{{ file }}</a> <br>
+            </li>
+        {% empty %}
+            <h6 class="text-danger">Please try your image!</h6>
+        {%endfor%}
+    </ul>
+
+{% endblock %}

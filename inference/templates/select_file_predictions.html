@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+        <h5 class="mb-4">Select your main image (the rest are partition):</h5>
+         {% for mosaic in mosaics %}
+             <form method="post" action="{% url 'process_mosaic' mosaic.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <label>
+                <a href="/media/{{ mosaic.file }}" class="ml-3">
+                    <img src="/media/{{ mosaic.file }}" alt="thumbnail" class="img-thumbnail" style="width: 100px; height: auto">
+                </a><a href="/media/{{ mosaic.file }}">{{ mosaic.file }}</a>
+                </label>
+                 <div class="d-flex justify-content-end ">
+              <button type="submit" class="btn btn-success btn-sm">Process This</button>
+                     </div>
+                <br><br>
+                  </form>
+
+         {% empty %}
+            <h6 class="text-danger">Please upload your main image first!</h6>
+         {% endfor %}
+{% endblock %}

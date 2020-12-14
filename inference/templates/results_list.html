@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h5>Your processed images:</h5>
+    <ul class="list-group list-group-flush">
+        {% for file in filename %}
+            <li class="list-group-item">
+                <a href="/media/output/{{ file }}">
+                <img src="/media/output/{{ file }}" alt="thumbnail" class="img-thumbnail" style="width: 100px" >
+                </a>
+                <a href="/media/output/{{ file }}">{{ file }}</a> <br>
+            </li>
+        {% empty %}
+            <h6 class="text-danger">Please try your image!</h6>
+        {%endfor%}
+    </ul>
+
+{% endblock %}

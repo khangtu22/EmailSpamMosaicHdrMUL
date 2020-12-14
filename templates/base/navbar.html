@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <style>
+        .dropdown-item:hover{
+            background-color: rgba(85, 87, 87, 0.1) !important;
+            border-radius: .125rem;
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.1), 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+            transition: all .1s linear;
+        }
+        .btn {border-radius: 8px;}
+        .navbar{
+            background-color: #7952b3;
+            color: #000;
+            font-family: 'Poppins',sans-serif;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            Home
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mr-4" >
+                        <div class="dropdown">
+                          <!--Trigger-->
+                          <a class="dropdown-toggle" style="color: white" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i></a>
+                          <!--Menu-->
+                          <div class="dropdown-menu dropdown-menu-right pl-2 pr-2 z-depth-1">
+                              <a class="dropdown-item " href="{% url 'history' %}">
+                                  <p>JUNE 30, 2020</p>
+                                  <p>Now you can view your history and of others!</p>
+                              </a>
+                              <hr>
+                              <a class="dropdown-item " href="{% url 'history' %}">
+                                  <p>JUNE 26, 2020</p>
+                                  <p>If you need any help, please contact us!</p>
+                              </a>
+                          </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item mr-4">
+                        <a href="{% url 'history' %}" data-toggle="tooltip" title="View History"><i class="fas fa-history" style="color:white"></i></a>
+                    </li>
+
+                     <li class="nav-item mr-4">
+                        <a href="https://github.com/khangtu22/email-spam-classifier" data-toggle="tooltip" title="Go to project repository"><i class="fab fa-github" style="color:white"></i></a>
+                    </li>
+
+                    <li class="nav-item" style="color: white">
+                        <div class="dropdown">
+                          <!--Trigger-->
+                          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"> {{ user.username }}</a>
+                          <!--Menu-->
+                          <div class="dropdown-menu dropdown-menu-right pl-2 pr-2 z-depth-1">
+                              <a class="dropdown-item" href="{% url 'history' %}">History</a>
+                              <a class="dropdown-item" href="{% url 'password_change'%}">Change password</a>
+                              <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                          </div>
+                        </div>
+                    </li>
+                </ul>
+        {% else %}
+             <form class="form-inline ml-auto">
+                 <a href="{% url 'home' %}" class="btn purple purple-gradient btn-sm ml-3">EmailSpam</a>
+                 <a href="{% url 'home_mosaic' %}" class="btn purple purple-gradient btn-sm ml-3">Mosaic</a>
+                 <a href="{% url 'home_hdr' %}" class="btn purple purple-gradient btn-sm ml-3">HDR</a>
+{#                 <a href="{% url 'login' %}" class="btn btn-outline-white btn-sm my-0 ">Log In  <i class="fas fa-sign-in-alt"></i> </a>#}
+{#                 <a href="{% url 'signup' %}" class="btn purple purple-gradient btn-sm ml-3">Sign up</a>#}
+            </form>
+        {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</body>
+</html>

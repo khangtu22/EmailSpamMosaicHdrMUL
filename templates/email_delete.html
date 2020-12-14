@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron mt-5" style="border-radius: 10px">
+        <h1>Delete email</h1>
+        <form action="" method="post">{% csrf_token %}
+            <p>Are you sure you want to delete <br>"{{ email.content }}"?</p>
+            <input class="btn btn-danger" type="submit" value="Confirm" />
+        </form>
+    </div>
+{% endblock content %}
