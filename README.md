@@ -21,5 +21,8 @@ access : http://127.0.0.1:8000/
 
 
 ## Preview
-![alt text]
+###Home Page
+![alt text](https://github.com/khangtu22/EmailSpamMosaicHdrMUL/blob/master/ImagesProduct/HomePage.png)
+###Mosaic similar UI to HDR
+![alt text](https://github.com/khangtu22/EmailSpamMosaicHdrMUL/blob/master/ImagesProduct/MosaicHdr.png)
 
